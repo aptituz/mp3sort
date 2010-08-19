@@ -117,6 +117,7 @@ use File::Path qw(make_path);
 use File::Copy;
 use File::Spec;
 use Cwd;
+use Pod::Usage;
 
 my $template="%a/%A";
 my $dry_run=0;
@@ -248,4 +249,10 @@ sub find_files_and_act {
     $find->in(($base_dir));
 }
 
+if ($opt_help) {
+    pod2usage( 
+        -verbose => 1,
+        -exitval => 0
+    );
+}
 find_files_and_act;
