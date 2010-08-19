@@ -1,0 +1,17 @@
+mp3sort
+-------
+This is a utility to sort mp3s based on their ID3 tag into directories.
+By default it will sort all mp3s it finds in the current working
+directory and its subdirectory and move it to a <Artist>/<Album>
+hierarchy, but this can be overwritten with the --template option.
+
+Documentation
+-------------
+The script contains documentation in POD format.
+Use, for example, pod2man to extract it as a manpage:
+
+pod2man mp3sort.pl|nroff -man|less
+
+Author
+------
+Author of this script is Patrick Schoenfeld <schoenfeld@debian.org>
