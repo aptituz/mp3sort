@@ -110,14 +110,19 @@ General Public License, version 2 or later.
 use strict;
 use warnings;
 
+
 use File::Find::Rule;
 use Getopt::Long;
 use MP3::Tag;
 use File::Path qw(make_path);
 use File::Copy;
 use File::Spec;
+use File::Basename;
 use Cwd;
 use Pod::Usage;
+
+my $VERSION = "0.1";
+my $progname=basename($0);
 
 my $template="%a/%A";
 my $dry_run=0;
@@ -144,6 +149,10 @@ GetOptions(
     "use-copy" => \$copy_instead_of_move,
     "replace-spaces", \$replace_spaces,
 );
+
+sub version {
+    print "$progname $VERSION\n";
+}
 
 sub new_filename {
     my ($file, $shortname, $template) = @_;
@@ -247,6 +256,11 @@ sub find_files_and_act {
     $find->name('*.mp3');
     $find->exec(\&act_on_file);
     $find->in(($base_dir));
+}
+
+if ($opt_version) {
+    version;
+    exit 0;
 }
 
 if ($opt_help) {
